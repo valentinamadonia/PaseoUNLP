@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    <div  class="mr-auto">
+        <div class="d-flex align-items-center">
+            <a href="/ppalAdmin" class="btn  btn-outline-dark me-3" >Inicio</a>
+        </div>
+    </div>
+    <div  class="ms-auto" style="margin-right: 1rem;">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+</nav>
+<br><br>
+
+
+<button type="button" class="btn btn-success" style="margin-left: 20px;"  (click)="openModal()">Agregar</button>
+
+<div class="container" >
+    <h3 class="font-weight-bold text-center">Lista de Productos</h3><br>
+    <div class="table-responsive">
+    <table class="table table-dark table-striped table table-fixed">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">Nombre</th>
+            <th scope="col" style="text-align: center;width: 200px;">Descripcion</th>
+            <th scope="col" style="text-align: center;">Stock</th>
+            <th scope="col" style="text-align: center;">Precio</th>
+            <th scope="col" style="text-align: center;">Productor</th>
+            <th scope="col" style="text-align: center;width: 200px;">Rubros</th>
+            <th scope="col" style="text-align: center;">Imagen</th>
+            <th scope="col" style="text-align: center;">Estado</th>
+            <th scope="col" style="text-align: center;padding-right: 60px;"></th>
+            
+          </tr>
+        </thead>
+        <tbody>
+                    <tr *ngFor="let p of productos;let i=index">
+                        <td style="text-align: center;">{{p.nombre}}</td>
+                        <td style="text-align: center;">{{p.descripcion}}</td>
+                        <td style="text-align: center;">{{p.stock}}</td>
+                        <td style="text-align: center;">{{p.precio}}</td>
+                        <td style="text-align: center;">{{p.productor.nombre}}</td>
+                        <td style="text-align: center;">
+                            <p *ngFor="let r of p.rubros" style="margin-bottom: 0.5px;">{{r.nombre}}</p>
+                        </td>
+                        <td style="text-align: center;"><p><a class="btn btn-info btn-sm" target="_blank" href="{{p.imagenes[0].imagen}}">Ver</a></p></td>
+                        <td style="text-align: center;width: 230px;"><select style="text-align: center;" class="form-select custom-select" style="text-align: center;" [(ngModel)]="p.estado" (change)="cambiarEstado(p)">
+                                <option value="ACTIVO">ACTIVO</option>
+                                <option value="SUSPENDIDO">SUSPENDIDO</option>
+                            </select>
+                        </td>
+                        <td><button type="button" class="btn btn-info btn-sm" (click)="Editar(p)">Editar</button></td>
+                    </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+<p style="text-align:center">
+<a href="/ppalAdmin" class="btn  btn-success text-center justify-content-center">Volver</a>
+</p>
+<br><br><br>
+
+<!--Modal-->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display': display}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success text-center">Agregar producto</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit(productoForm.value)" #productoForm="ngForm">
+                     
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="nombre" class="col-sm-3 col-form-label" >Nombre: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="text" class="form-control"  style="margin-left: -35px;" id="nombre"
+                                required
+                                ngModel name="nombre">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="descripcion" class="col-sm-3 col-form-label" >Descripcion: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="text" class="form-control"  style="margin-left: -35px;" id="descripcion"
+                                required
+                                ngModel name="descripcion">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="stock" class="col-sm-3 col-form-label" >Stock: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="number" class="form-control"  style="margin-left: -35px;" id="stock"
+                                required
+                                ngModel name="stock">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="precio" class="col-sm-3 col-form-label" >Precio: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="number" class="form-control"  style="margin-left: -35px;" id="precio"
+                                required
+                                ngModel name="precio">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="imagen" class="col-sm-3 col-form-label" >Imagen: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="tezt" class="form-control"  style="margin-left: -35px;" id="imagen"
+                                required
+                                ngModel name="imagen">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="rubros" class="col-sm-3 col-form-label" >Rubros: </label>
+                            <div class="col-sm-4 rubros-container" style="width: 30%;">
+                                <div class="form-group form-check " *ngFor="let r of rubros;let i=index">
+                                    <input type="checkbox" [value]="r"  class="form-check-input " (click)="agregarRubro(r)" id="rubro{{i}}" >
+                                    <label class="form-check-label" for="rubroSeleccionados">{{r.nombre}}</label>
+                                </div>
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="productor" class="col-sm-3 col-form-label " style=" margin-left: 22px;">Productor:</label>
+                            <div class="col-sm-4" >
+                                <select id="productor" name="productor" class="form-control col-sm-5 custom-select" style="margin-left: -45px;" [(ngModel)]="productorSeleccionado"  required>
+                                   <option [ngValue]="opcion" *ngFor="let opcion of productores">{{ opcion.nombre }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="opcion" class="col-sm-3 col-form-label " style=" margin-left: 22px;">Estado:</label>
+                            <div class="col-sm-4" >
+                                <select id="opcion" name="opcion" class="form-control col-sm-5 custom-select" style="margin-left: -45px;" [(ngModel)]="estadoSeleccionado"  required>
+                                <option [ngValue]="opcion.valor" *ngFor="let opcion of estadoProducto">{{ opcion.texto }}</option>
+                                </select>
+                            </div>
+                        </div>
+                     
+                        <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success"
+                        [disabled]="!productoForm.form.valid">Agregar producto</button>
+                    </div>
+                  </form> 
+                </div>
+                
+        </div>
+        </div>
+</div>
+    

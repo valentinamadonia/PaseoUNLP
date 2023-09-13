@@ -1,0 +1,9 @@
+.table-responsive {
+    max-height: 500px; /* Altura máxima del contenedor de la tabla */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+  }
+
+  .custom-select {
+    width: 75%;
+  }
+  

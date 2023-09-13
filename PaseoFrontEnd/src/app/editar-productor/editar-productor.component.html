@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    <a href="/ppalAdmin" class="btn  btn-outline-dark me-3" >Inicio</a>
+    <div  class="ms-auto" style="margin-right: 1rem;">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+</nav>
+
+
+<br><br><br>
+<div class="container">
+    <h3 class="text-center">Editar productor</h3><br>
+    <div class="text-center">
+                <div class="card border-success mx-auto d-block" style="width:500px; height: autopx;">
+                      <br>
+                <form (ngSubmit)="onSubmit(productorForm.value)" #productorForm="ngForm">
+                                    
+                    <div class="form-group row justify-content-center align-items-center">
+                        <label for="nombre" class="col-sm-3 col-form-label" >Nombre: </label>
+                        <div class="col-sm-4 " style="width: 40%;">
+                            <input type="text" class="form-control"  style="margin-left: -10px;" id="nombre"
+                            required
+                            [(ngModel)]="productor.nombre" name="nombre">
+                        </div>
+                    </div><br>
+                    <div class="form-group row justify-content-center align-items-center">
+                        <label for="descripcion" class="col-sm-3 col-form-label" >Descripcion: </label>
+                        <div class="col-sm-4 " style="width: 40%;">
+                            <input type="text" class="form-control"  style="margin-left: -10px;" id="descripcion"
+                            required
+                            [(ngModel)]="productor.descripcion" name="descripcion">
+                        </div>
+                    </div><br>
+                    <div class="form-group row justify-content-center align-items-center">
+                        <label for="opcion" class="col-sm-3 col-form-label " style=" margin-left: 40px;">Estado:</label>
+                        <div class="col-sm-4" >
+                            <select id="opcion" name="opcion" class="form-control col-sm-5 custom-select custom-select-sm" style="margin-left: -37px;" [(ngModel)]="estadoSeleccionado"  required>
+                            <option [ngValue]="opcion.valor" *ngFor="let opcion of estadoProductor">{{ opcion.texto }}</option>
+                            </select>
+                        </div>
+                    </div>
+                
+                    <br>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-success"
+                    [disabled]="!productorForm.form.valid">Editar productor</button>
+                </div>
+                <br>
+                </form> 
+                </div>
+    </div>
+</div>
+
+<br>
+<p style="text-align:center">
+<a href="/listaProductores" class="btn  btn-success text-center justify-content-center">Volver</a>
+</p>
+<br><br><br>
+      

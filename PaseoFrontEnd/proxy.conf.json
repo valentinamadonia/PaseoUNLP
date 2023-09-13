@@ -1,0 +1,7 @@
+{
+    "/rest":{
+        "target":"http://localhost:8080/Paseo2",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}

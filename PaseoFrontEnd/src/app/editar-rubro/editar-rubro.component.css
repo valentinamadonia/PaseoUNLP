@@ -1,0 +1,21 @@
+
+.form-group.row {
+    margin-bottom:10px;
+  }
+  
+  label.col-sm-1 {
+    text-align: right;
+  }
+  
+  .col-sm-4 {
+    width: 50%;
+  }
+
+  .navbar{
+    padding:1rem;
+    display:flex;
+    justify-content: space-between;
+    border-radius: 1px solid;
+}
+
+  

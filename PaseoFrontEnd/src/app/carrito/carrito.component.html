@@ -1,0 +1,78 @@
+<div class="productos">
+    <article class="producto" *ngFor="let productoE of carritoObservable$ | async">
+        <div class="producto-body">
+            <p>{{productoE.producto.nombre}}</p>
+            <div class="producto-info">
+               <p>$ {{productoE.producto.precio}}</p>
+            </div>
+        </div>
+    
+        <div class="producto-total">
+            <p>${{ totalProducto(productoE.producto.precio,productoE.cantidad)}}</p>
+        </div>
+        <div class="producto-botones">
+            <div class="producto-botones-operaciones">
+                <i class="fa-solid fa-minus" (click)="updateCantidad('resta',productoE.producto.id)"></i>
+                <span style="border:1px solid;border-radius:0.5rem; padding: 0.5rem;">{{productoE.cantidad}}</span>
+                <i class="fa-solid fa-plus" (click)="updateCantidad('suma',productoE.producto.id)"></i>
+            </div>
+            <i class="fa-solid fa-trash" (click)="eliminarProducto(productoE.producto)"></i>
+        </div>
+    </article>
+    <div class="productos-total">
+      <p style="font-size: 1.2rem; font-weight: bold;">Total: $ {{totalCarrito()}}</p>
+    </div>
+
+    <div class="carrito-info">
+        <form (ngSubmit)="onSubmit(pedidoForm.value)" #pedidoForm="ngForm">
+            
+            <div class="form-group">
+                <label for="opcion">Retiro o Entrega:</label>
+                <select id="opcion" name="opcion" [disabled]="user.estado==='SUSPENDIDO'" class="form-control" [(ngModel)]="retiroentregaSeleccionado" (change)="actualizarCamposRetiroEntrega()" required>
+                  <option [ngValue]="opcion.valor" *ngFor="let opcion of retiroentrega">{{ opcion.texto }}</option>
+                </select>
+            </div>
+
+            <div *ngIf="mostrarCamposRetiro"><!--Si se retira-->
+                <div class="form-group">
+                    <label for="punto">Punto de retiro:</label>
+                    <select id="punto" class="form-control" required  [(ngModel)]="puntoId" name="puntoId">
+                      <option [ngValue]="punto" *ngFor="let punto of puntosDeRetiro">{{ punto.nombre}}-{{punto.direccion}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="mostrarCamposEntrega"><!--Si se entrega-->
+                <br>
+                <div class="form-group row justify-content-center ">
+                    <label for="direccionEntrega" class="col-sm-3 col-form-label">Direccion de entrega</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="direccionEntrega" required
+                        [ngModel]="user.direccion" name="direccionEntrega">
+                    </div>
+                </div><br>
+                <div class="form-group row justify-content-center ">
+                    <label for="rangoHorario" class="col-sm-3 col-form-label">Rango Horario</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="rangoHorario" required
+                        [ngModel]="rangoHorario" name="rangoHorario">
+                    </div>
+                </div><br>
+            </div>
+            <br>
+            <div *ngIf="pedidoId===0">
+                <div class="text-center">
+                    <button type="submit" class="btn  btn-outline-dark me-3" [disabled]="!pedidoForm.form.valid || cantProductos === 0 || (retiroentregaSeleccionado === 1 && (!pedidoForm.value.direccionEntrega || !pedidoForm.value.rangoHorario))" style="text-align: center;width: 50%;align-self: center;">Finalizar compra</button>
+                </div>
+            </div>
+            <div *ngIf="pedidoId!==0">
+                <div class="text-center">
+                    <button type="submit" class="btn  btn-outline-dark me-3" [disabled]="!pedidoForm.form.valid || cantProductos === 0 || (retiroentregaSeleccionado === 1 && (!pedidoForm.value.direccionEntrega || !pedidoForm.value.rangoHorario))" style="text-align: center;width: 50%;align-self: center;">Modificar compra</button>
+                </div>
+            </div>
+
+        </form> 
+    </div>
+    
+    
+</div>

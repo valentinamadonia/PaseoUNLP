@@ -1,0 +1,120 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+   
+        <div  class="mr-auto" >
+            <div class="d-flex align-items-center">
+                <a href="/home" class="btn  btn-outline-dark me-3"  >Inicio</a>
+            </div>
+        </div>
+        <div  class="ms-auto">
+            <div class="d-flex align-items-center">
+                <a href="/login" class="btn  btn-outline-dark me-3" >Iniciar sesion</a>
+            </div>
+        </div>
+    
+</nav>
+
+<br><br><br>
+<h2 class="text-center">Registrarse</h2>
+<br>
+<div class="container">
+    <div class="text-center">
+<div class="card border-success mx-auto d-block" style="width:500px; height: auto">
+        <br>
+                    <form (ngSubmit)="onSubmit(userForm.value)" #userForm="ngForm">
+                    
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nombre"
+                                required
+                                ngModel name="nombre">
+                            </div>
+                            <div *ngIf="userForm.controls['nombre'].invalid && userForm.controls['nombre'].touched" class="text-danger">
+                                Se requiere el campo
+                            </div>
+                        </div><br>
+                    <!--[(ngModel)]="user.nombre"-->
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="apellido" class="col-sm-3 col-form-label">Apellido</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="apellido" required
+                                ngModel name="apellido">
+                            </div>
+                            <div *ngIf="userForm.controls['apellido'].invalid && userForm.controls['apellido'].touched" class="text-danger">
+                                Se requiere el campo
+                            </div>
+                        </div><br>
+                    <!--[(ngModel)]="user.apellido"-->
+                        <div class="form-group row justify-content-center align-items-center">
+                                <label for="email" class="col-sm-3 col-form-label">Email</label>
+                                <div class="col-sm-4">
+                                    <input type="email" class="form-control" id="email" required
+                                ngModel name="email">
+                                 </div>
+                                 <div *ngIf="userForm.controls['email'].invalid && userForm.controls['email'].touched" class="text-danger">
+                                    Se requiere el campo
+                                </div>
+                        </div><br>
+                    <!-- [(ngModel)]="user.email"-->
+                        <div class="form-group row justify-content-center align-items-center">
+                                <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" id="direccion" required
+                                ngModel name="direccion">
+                                </div>
+                                <div *ngIf="userForm.controls['direccion'].invalid && userForm.controls['direccion'].touched" class="text-danger">
+                                    Se requiere el campo
+                                </div>
+                        </div><br>
+                        <!--[(ngModel)]="user.direccion"-->
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="telefono" class="col-sm-3 col-form-label">Telefono</label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="telefono" required
+                                ngModel name="telefono">
+                            </div>
+                            <div *ngIf="userForm.controls['telefono'].invalid && userForm.controls['telefono'].touched" class="text-danger">
+                                Se requiere el campo
+                            </div>
+                        </div><br>
+                    <!--[(ngModel)]="user.telefono"-->
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
+                            <div class="col-sm-4">
+                                <input type="password" class="form-control" id="password" required
+                                ngModel   name="password">
+                            </div>
+                            <div *ngIf="!isPasswordValid(userForm.form.controls['password'].value) && userForm.form.controls['password'].touched" class="text-danger">
+                                La contraseña debe tener al menos 8 caracteres.
+                            </div>
+                        </div>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="passwordConfirm" class="col-sm-3 col-form-label">Confirmar contraseña</label>
+                            <div class="col-sm-4">
+                                <input type="password" class="form-control" id="passwordConfirm" required
+                                ngModel   name="passwordConfirm">
+                            </div>
+                            <div *ngIf="userForm.form.controls['password'].value !== userForm.form.controls['passwordConfirm'].value && userForm.form.controls['passwordConfirm'].touched" class="text-danger">
+                                Las contraseñas no coinciden.
+                            </div>
+                        </div>
+                        
+                        <br>
+                    <!--[(ngModel )]="user.password"-->
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success"
+                        [disabled]="!userForm.form.valid">Registrarse</button>
+                    </div>
+                    <br>
+                  </form>      
+                  
+                </div>
+                
+            </div>
+            <br><br>
+</div>

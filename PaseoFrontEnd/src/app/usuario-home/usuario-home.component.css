@@ -1,0 +1,78 @@
+.form-group.row {
+    margin-bottom:10px;
+  }
+  
+  label.col-sm-1 {
+    text-align: right;
+  }
+  
+  .col-sm-4 {
+    width: 50%;
+  }
+  .conteiner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    width: 100vw;
+    position: relative;
+    background-color:white;
+}
+.conteiner-title{
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+.conteiner-productos{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.producto{
+  flex-basis: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
+  border:0.1px solid;
+  padding: 1rem;
+  margin:0.5rem; 
+}
+
+.producto-imagen{
+  flex-basis: 40%;
+  align-items: center;
+}
+.producto-header{
+  flex-basis: 20%;
+  align-items: center;
+}
+.producto-body{
+  flex-basis: 20%;
+  align-items: center;
+}
+
+.producto-footer{
+  flex-basis: 20%;
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+::ng-deep{
+  .ngx-pagination{
+      display:flex;
+      justify-content: center;
+      align-items:center;
+  }
+  .ngx-pagination li{
+      width: 35px;
+      height: 35px;
+      border-radius:50% !important;
+      background: #f8f8f8;
+      display: flex;
+      justify-content: center;
+      align-items:center;
+
+  }
+}

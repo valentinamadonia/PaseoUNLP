@@ -1,0 +1,84 @@
+
+
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    
+      <button type="submit" class="btn  btn-outline-dark " style="margin-right: 1rem;" (click)="inicio()">Inicio</button>
+      
+      <div  class="ms-auto" style="margin-right: 1rem;">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+
+
+</nav>
+<br>
+
+
+<div class="container" >
+    <h3 class="font-weight-bold text-center">Historial de pedidos</h3><br><br>
+    <div *ngIf="misPedidos.length===0">
+        <h4 class="font-weight-bold text-center">No tienes pedidos realizados</h4><br>
+    </div>
+    <div *ngIf="misPedidos.length>0">
+        <div class="table-responsive">
+        <table class="table table-dark table-striped table table-fixed">
+            <thead>
+            <tr>
+                <th scope="col" style="text-align: center;">Fecha</th>
+                <th scope="col" style="text-align: center;">Retiro/envio</th>
+                <th scope="col" style="text-align: center;">Direccion</th>
+                <th scope="col" style="text-align: center;">Rango horario</th>
+                <th scope="col" style="text-align: center;">Productos</th>
+                <th scope="col" style="text-align: center;">Total</th>
+                <th scope="col" style="text-align: center;">Estado</th>
+                <th scope="col" style="text-align: center;padding-right: 60px;"></th>
+                <th scope="col" style="text-align: center;padding-right: 60px;"></th>
+                <th scope="col" style="text-align: center;padding-right: 60px;"></th>
+            </tr>
+            </thead>
+            <tbody>
+                        <tr *ngFor="let p of misPedidos;let i=index">
+                            <td style="text-align: center;">{{p.fecha|date}}</td>
+                            <td style="text-align: center;">{{p.retiroEntrega}}</td>
+                            <td *ngIf="p.direccionRetiro" style="text-align: center;">{{p.direccionRetiro.nombre}}, {{p.direccionRetiro.direccion}}</td>
+                            <td *ngIf="p.direccionEntrega" style="text-align: center;">{{p.direccionEntrega}}</td>
+                            <td *ngIf="p.rangoHorario" style="text-align: center;">{{p.rangoHorario}}</td>
+                            <td *ngIf="!p.rangoHorario" style="text-align: center;">-</td>
+                            <td style="text-align: center;" >
+                                <button type="button" class="btn btn-light btn-sm " (click)="openModalProduct(p)"><i class="fa-solid fa-cart-shopping"></i></button>
+                            </td>
+                            <td style="text-align: center;">${{p.montoTotal}}</td>
+                            <td *ngIf="p.estado!='CANCELADO'" style="text-align: center;">{{p.estado}}</td>
+                            <td *ngIf="p.estado==='CANCELADO'" style="text-align: center; color: red;">{{p.estado}}</td>
+                            <td><button type="button" [disabled]="p.estado==='CANCELADO'||p.estado==='ENTREGADO'||p.estado==='RETIRADO'"  class="btn btn-info btn-sm" (click)="cancelarPedido(p)">Cancelar</button></td>
+                            <td><button type="button" class="btn btn-info btn-sm" (click)="repetirPedido(p)">Repetir</button></td>
+                            <td><button type="button" [disabled]="p.estado==='CANCELADO'||p.estado==='ENTREGADO'||p.estado==='RETIRADO'"  class="btn btn-info btn-sm" (click)="modificarPedido(p)">Modificar</button></td>
+                        </tr>
+            </tbody>
+        </table>
+        </div>
+    </div>
+    <br>
+<p style="text-align:center">
+<a href="/ppalUser" class="btn  btn-success text-center justify-content-center">Volver</a>
+</p>
+<br><br><br>
+
+<div id="modalProductos" class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display':productDisplay}">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success text-center">Productos</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandledProduct()"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body text-center" id="modal-productos-listado">
+                   <!-- <div *ngFor=" let p of pedido.listaProductos">-{{p.producto.nombre}}, cantidad: {{p.cantidad}}</div> -->
+                </div>
+                
+        </div>
+    </div>
+</div>

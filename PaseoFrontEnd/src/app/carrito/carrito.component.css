@@ -1,0 +1,39 @@
+.productos{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+}
+.producto{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+.producto-body{
+    flex-basis: 50%;
+
+}
+
+.producto-total{
+    flex-basis: 20%;
+}
+.producto-botones{
+    flex-basis: 30%;
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap:2rem;
+}
+.producto-info{
+    display: flex;
+    gap:1rem;
+}
+.producto-botones-operaciones{
+    display: flex;
+    align-items:center;
+    gap:1rem;
+}
+.productos-total{
+    padding: 1rem;
+    
+}

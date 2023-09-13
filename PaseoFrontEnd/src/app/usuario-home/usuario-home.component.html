@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+   
+        <div  class="mr-auto">
+            <div class="d-flex align-items-center">
+                <a href="/quienesSomos" class="btn  btn-outline-dark me-3" >Productores</a>
+            </div>
+        </div>
+        <div  class="ms-auto">
+            <div class="d-flex align-items-center">
+                <a href="/registro" class="btn  btn-outline-dark me-3" style="margin-left: 750px;">Registrarse</a>
+            </div>
+        </div>
+        <div  class="ms-auto">
+         <div class="d-flex align-items-center">
+             <a href="/login" class="btn  btn-outline-dark me-3" >Iniciar sesion</a>
+         </div>
+     </div>
+    
+</nav>
+<br>
+
+<div class="conteiner">
+    <div class="conteiner-title " >
+       <h2 style="text-align: center;"> Nuestros productos</h2>
+    </div>
+
+    <div class="conteiner-productos">
+         <article class="producto" *ngFor="let producto of productos | paginate: {itemsPerPage: itemsPerPage,currentPage: p}">
+            <div class="producto-imagen">
+              <img src="{{producto.imagenes[0].imagen}}" height="250" style="border:1px solid;">
+            </div>
+            <br>
+            <div class="producto-header">
+               <h3 class="producto-tittle">{{producto.nombre}}</h3>
+            </div>
+            <div class="producto-body" style="text-align: center;">
+               <p> {{producto.descripcion}} </p>
+            </div>
+            <div class="producto-footer" style="text-align: center;">
+                
+            </div>
+         </article>
+    </div>
+    <div class="mt-8 py-5 flex justify-center items-center ">
+      <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p= $event"></pagination-controls>
+   </div>
+</div>
+
+
+<img src="assets/footer2.jpg"  style="width: 100%;">

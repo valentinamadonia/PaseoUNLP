@@ -1,0 +1,76 @@
+
+
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    
+      <button type="submit" class="btn  btn-outline-dark " style="margin-right: 1rem;" (click)="editar()">EditarPerfil</button>
+      
+      <button type="submit" class="btn  btn-outline-dark " style="margin-right: 1rem;" (click)="historial()">Historial de pedidos</button>
+      
+      <div  class="ms-auto" style="margin-right: 1rem;">
+         <div class="d-flex align-items-center">
+             <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+         </div>
+     </div>
+
+      <div class="navbar-cart" (click)="mostrarCarrito()"> 
+         <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+      </div>
+  
+
+</nav>
+<br>
+
+<!--<button type="submit" class="btn  btn-outline-dark" (click)="editar()">EditarPerfil</button>-->
+<div class="cart" [ngClass]="{show:verCarrito}">
+   <app-carrito></app-carrito>
+</div>
+<div *ngIf="user.estado==='SUSPENDIDO'" class="alert alert-danger text-center" role="alert">
+   Estas suspendido, comunicate con paseosocial@gmail.com o al 011 15-7361-9930
+ </div>
+
+      <h5 style="margin-left: 150px;" >Filtro por rubro:</h5>
+      <select id="opcion" name="opcion" class="form-select "  style="margin-left: 20px; width: 30%;" [(ngModel)]="rubroSeleccionado" (change)="filtarPorRubro()" required>
+         <option>Todos</option>
+         <option [ngValue]="opcion.nombre" *ngFor="let opcion of rubros">{{ opcion.nombre }}</option>
+      </select>
+ 
+
+<div class="conteiner">
+
+    <div class="conteiner-title " >
+       <h2 style="text-align: center;">Productos</h2>
+    </div>
+    <div *ngIf="productosFiltrados.length===0"><br><h2>No hay productos</h2></div>
+    <div class="conteiner-productos">
+         <article class="producto" *ngFor="let producto of productosFiltrados | paginate: {itemsPerPage: itemsPerPage,currentPage: p}">
+            <div class="producto-imagen">
+              <img src="{{producto.imagenes[0].imagen}}" height="250" style="border:1px solid;">
+            </div>
+            <br>
+            <div class="producto-header">
+               <h3 class="producto-tittle">{{producto.nombre}}</h3>
+               <p style="text-align: center;font-size: 1.2rem;">${{producto.precio}}</p>
+            </div>
+            <div class="producto-body" style="text-align: center;">
+               <p> {{producto.descripcion}} </p>
+            </div>
+            <div class="producto-footer" style="text-align: center;">
+                <button class="btn  btn-outline-dark me-3" [disabled]="user.estado==='SUSPENDIDO'" (click)="agregarAlCarrito(producto)">Agregar</button>
+            </div>
+         </article>
+    </div>
+    <div class="mt-8 py-5 flex justify-center items-center ">
+      <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="p= $event"></pagination-controls>
+   </div>
+</div>
+
+
+
+ 
+ 
+ 
+ 
+ 

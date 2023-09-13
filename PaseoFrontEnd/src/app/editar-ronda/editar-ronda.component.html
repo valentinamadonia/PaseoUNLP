@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    <a href="/ppalAdmin" class="btn  btn-outline-dark me-3" >Inicio</a>
+    <div  class="ms-auto" style="margin-right: 1rem;">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+</nav>
+
+
+<br><br>
+<h2 class="text-center">Editar Ronda</h2>
+<br>
+<div class="container">
+    <div class="text-center">
+                <div class="card border-success mx-auto d-block" style="width:600px; height: auto;">
+                      <br>
+                    <form (ngSubmit)="onSubmit(rondaForm.value)" #rondaForm="ngForm">
+                                        
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="fechainicio" class="col-sm-3 col-form-label" >Fecha inicio: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="date" class="form-control"  style="margin-left: -35px;" id="fechainicio"
+                                required
+                                [(ngModel)]="formattedFechaInicio" name="fechainicio">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="fechafin" class="col-sm-3 col-form-label" >Fecha fin: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="date" class="form-control"  style="margin-left: -35px;" id="fechafin"
+                                required
+                                [(ngModel)]="formattedFechaFin" name="fechafin">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="fecharetiro" class="col-sm-3 col-form-label" >Fecha retiro: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="date" class="form-control"  style="margin-left: -35px;" id="fecharetiro"
+                                required
+                                [(ngModel)]="formattedFechaRetiro" name="fecharetiro">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="rangohorario" class="col-sm-3 col-form-label" >Rango horario: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="text" class="form-control"  style="margin-left: -35px;" id="rangohorario"
+                                required
+                                [(ngModel)]="ronda.rangoHorario" name="rangohorario">
+                            </div>
+                        </div><br>
+
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="opcion" class="col-sm-3 col-form-label " style=" margin-left: 25px;">Estado:</label>
+                            <div class="col-sm-4" >
+                                <select id="opcion" name="opcion" class="form-control col-sm-5 custom-select" style="margin-left: -35px;width: 90%;" [(ngModel)]="estadoSeleccionado"  required>
+                                <option [ngValue]="opcion.valor" *ngFor="let opcion of estadoRonda">{{ opcion.texto }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    
+                        <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success"
+                        [disabled]="!rondaForm.form.valid">Editar ronda</button>
+                    </div>
+                    </form> 
+                    <br>
+                </div>
+    </div>
+</div>
+
+<br>
+<p style="text-align:center">
+<a href="/listaRondas" class="btn  btn-success text-center justify-content-center">Volver</a>
+</p>
+<br><br><br>
+      

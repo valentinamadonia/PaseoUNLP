@@ -1,0 +1,90 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="#">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+    <div  class="mr-auto">
+        <div class="d-flex align-items-center">
+            <a href="/ppalAdmin" class="btn  btn-outline-dark me-3" >Inicio</a>
+        </div>
+    </div>
+    <div  class="ms-auto" style="margin-right: 1rem;">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+</nav>
+<br><br>
+
+
+<button type="button" class="btn btn-success" style="margin-left: 20px;"  (click)="openModal()">Agregar</button>
+
+<div class="container" >
+    <h3 class="font-weight-bold text-center">Lista de Rubros</h3><br>
+    <div class="table-responsive">
+    <table class="table table-dark table-striped table table-fixed">
+        <thead>
+          <tr>
+            <th scope="col" style="text-align: center;">Nombre</th>
+            <th scope="col" style="text-align: center;padding-right: 60px;">Estado</th>
+            <th scope="col" style="text-align: center;padding-right: 60px;">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+                    <tr *ngFor="let rubro of rubros;let i=index">
+                        <td style="text-align: center;">{{rubro.nombre}}</td>
+                        <td style="text-align: center;width: 230px;"><select style="text-align: center;" class="form-select custom-select" style="text-align: center;" [(ngModel)]="rubro.estado" (change)="cambiarEstadoRubro(rubro)">
+                                <option value="ACTIVO">ACTIVO</option>
+                                <option value="SUSPENDIDO">SUSPENDIDO</option>
+                            </select>
+                        </td>
+                        <td><button type="button" class="btn btn-info btn-sm" (click)="Editar(rubro)">Editar</button></td>
+                    </tr>
+        </tbody>
+      </table>
+    </div>
+    <br>
+<p style="text-align:center">
+<a href="/ppalAdmin" class="btn  btn-success text-center justify-content-center">Volver</a>
+</p>
+<br><br><br>
+
+<!--Modal-->
+<div class="modal" tabindex="-1" role="dialog"  [ngStyle]="{'display': display}">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title text-success text-center">Agregar rubro</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="onCloseHandled()"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form (ngSubmit)="onSubmit(rubroForm.value)" #rubroForm="ngForm">
+                     
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="nombre" class="col-sm-3 col-form-label" >Nombre: </label>
+                            <div class="col-sm-4 " style="width: 30%;">
+                                <input type="text" class="form-control"  style="margin-left: -35px;" id="nombre"
+                                required
+                                ngModel name="nombre">
+                            </div>
+                        </div><br>
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="opcion" class="col-sm-3 col-form-label " style=" margin-left: 90px;">Estado:</label>
+                            <div class="col-sm-4" >
+                                <select id="opcion" name="opcion" class="form-control col-sm-5 custom-select" style="margin-left: -45px;" [(ngModel)]="estadoSeleccionado"  required>
+                                <option [ngValue]="opcion.valor" *ngFor="let opcion of estadoRubro">{{ opcion.texto }}</option>
+                                </select>
+                            </div>
+                        </div>
+                     
+                        <br>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success"
+                        [disabled]="!rubroForm.form.valid">Agregar rubro</button>
+                    </div>
+                  </form> 
+                </div>
+                
+        </div>
+        </div>
+</div>
+    

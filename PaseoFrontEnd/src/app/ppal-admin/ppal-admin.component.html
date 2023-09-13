@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg " style="background-color: #648E3A;">
+    <a class="navbar-brand" href="ppalAdmin">
+        <img src="assets/logo.jpg" height="100" style="margin-left: 20px;">
+    </a>
+
+    <button type="submit" class="btn  btn-outline-dark " style="margin-right: 1rem;" (click)="editar()">EditarPerfil</button>
+    
+    <div  class="ms-auto">
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn  btn-outline-dark me-3" style="margin-right: 1rem;" (click)="cerrarSesion()">Cerrar sesion</button>
+        </div>
+    </div>
+</nav>
+<br><br><br>
+
+<div class="conteiner">
+    <button type="submit" class="btn  btn-outline-dark  center-button" (click)="listaUsuarios()" >Usuarios</button>
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaPedidos()" >Pedidos</button>
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaProductos()" >Productos</button>
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaRondas()" >Rondas</button>
+</div><br><br>
+<div class="conteiner">
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaRubros()" >Rubros de productos</button>
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaProductores()" >Productores</button>
+    <button type="submit" class="btn  btn-outline-dark  center-button" style="margin-left: 20px;" (click)="listaPuntos()" >Puntos de retiro</button>
+</div>

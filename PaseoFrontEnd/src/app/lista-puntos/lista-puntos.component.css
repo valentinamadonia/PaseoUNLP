@@ -1,0 +1,10 @@
+.table-responsive {
+    max-height: 420px; /* Altura máxima del contenedor de la tabla */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+    overflow-x: auto;
+    width: 800px;
+    margin: 0 auto; /* Agrega esta línea para centrar horizontalmente */
+    display: block; /* Agrega esta línea para alinear verticalmente */
+    justify-content: center; /* Agrega esta línea para alinear verticalmente */
+    align-items: center;
+  }
