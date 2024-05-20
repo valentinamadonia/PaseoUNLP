@@ -20,7 +20,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.List;
 
 import org.glassfish.jersey.process.internal.RequestScoped;
-import org.springframework.security.access.prepost.PreAuthorize;
 
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -100,7 +99,7 @@ public class UsuariosResource {
 	   }
   }
    
-   @PreAuthorize("hasRole('ADMIN')")
+   
    @POST 
    @Produces(MediaType.APPLICATION_JSON)
    @Consumes(MediaType.APPLICATION_JSON)
@@ -143,7 +142,7 @@ public class UsuariosResource {
 		   return Response.status(Response.Status.NOT_FOUND).entity("No existe el usuario").build();
 	   }
    }
-   @PreAuthorize("hasRole('ADMIN')")
+   
    @DELETE //En realidad seria un put porque es eliminado logico
    @Path("{id}")
    @Produces(MediaType.TEXT_PLAIN)

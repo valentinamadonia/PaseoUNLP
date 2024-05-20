@@ -1,20 +1,12 @@
 package dao;
 
 import java.util.List;
-
-
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.transaction.Transactional;
-
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.jvnet.hk2.annotations.Service;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
 import jakarta.inject.Inject;
-import jwt.CustomUserBean;
 import modelos.Usuario;
 import utils.Estado;
 import utils.Rol;
@@ -138,10 +130,4 @@ public class UsuarioDAO implements IUsuarioDAO {
 		
 	}
 	
-	@Transactional
-	  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-	    Usuario user = getUserByEmail(username);
-	    return CustomUserBean.createInstance(user);
-	  }
-
 }

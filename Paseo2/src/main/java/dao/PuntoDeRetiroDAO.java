@@ -1,19 +1,11 @@
 package dao;
 
 import java.util.List;
-
-
 import javax.persistence.EntityManager;
-
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.jvnet.hk2.annotations.Service;
-
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Path;
 import modelos.PuntoDeRetiro;
-import modelos.Ronda;
-import modelos.Usuario;
 @Service
 @RequestScoped
 public class PuntoDeRetiroDAO implements IPuntoDeRetiroDAO{
@@ -54,7 +46,6 @@ public class PuntoDeRetiroDAO implements IPuntoDeRetiroDAO{
 	@Override
 	public void modificar(PuntoDeRetiro element) { //recibir elemento modificado
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(PuntoDeRetiro.class, element.getId());
 		try {
 			manager.getTransaction().begin();
 		    manager.merge(element);

@@ -1,15 +1,10 @@
 package dao;
-import modelos.Producto;
 import modelos.Productor;
 import utils.Estado;
-
 import java.util.List;
-
 import javax.persistence.EntityManager;
-
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.jvnet.hk2.annotations.Service;
-
 import jakarta.inject.Inject;
 
 @Service

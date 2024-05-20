@@ -2,13 +2,10 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-
 import org.glassfish.jersey.process.internal.RequestScoped;
 import org.jvnet.hk2.annotations.Service;
-
 import jakarta.inject.Inject;
 import modelos.Pedido;
-import modelos.Usuario;
 import utils.EstadoPedido;
 import utils.RetiroEntrega;
 @Service
@@ -20,8 +17,6 @@ public class PedidoDAO implements IPedidoDAO {
 	public PedidoDAO(IDAOUtils daoUtils) {
 		this.daoUtils = daoUtils;
 	}
-	
-	
 	
 	@Override
 	public List<Pedido> getList() {
@@ -62,7 +57,6 @@ public class PedidoDAO implements IPedidoDAO {
 	@Override
 	public void eliminar(Pedido element) {
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setEstado(EstadoPedido.CANCELADO);
 		try {
 			manager.getTransaction().begin();
@@ -74,7 +68,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void activar(Pedido element) { //que vuelva a ser pedido 
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setEstado(EstadoPedido.NOCONFIRMADO);
 		try {
 			manager.getTransaction().begin();
@@ -86,7 +79,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void confirmar(Pedido element) { //que confirme el pedido el admin
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setEstado(EstadoPedido.CONFIRMADO);
 		try {
 			manager.getTransaction().begin();
@@ -98,7 +90,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void marcarComoRetirado(Pedido element) { 
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setEstado(EstadoPedido.RETIRADO);
 		try {
 			manager.getTransaction().begin();
@@ -110,7 +101,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void marcarComoEntregado(Pedido element) { 
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setEstado(EstadoPedido.ENTREGADO);
 		try {
 			manager.getTransaction().begin();
@@ -122,7 +112,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void marcarParaEntrega(Pedido element) { 
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setRetiroEntrega(RetiroEntrega.ENTREGA);
 		try {
 			manager.getTransaction().begin();
@@ -134,7 +123,6 @@ public class PedidoDAO implements IPedidoDAO {
 	}
 	public void marcarParaRetiro(Pedido element) { 
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(Pedido.class, element.getId());
 		element.setRetiroEntrega(RetiroEntrega.RETIRO);
 		try {
 			manager.getTransaction().begin();

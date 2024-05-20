@@ -2,14 +2,10 @@ package servlets;
  //PRUEBA
 import java.io.IOException;
 import java.util.List;
-
 import org.glassfish.hk2.api.ServiceLocator;
 import org.glassfish.hk2.utilities.ServiceLocatorUtilities;
-import org.glassfish.jersey.process.internal.RequestScoped;
-
 import configuracion.RequestScopeBinder;
 import dao.*;
-import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,8 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import modelos.*;
 import utils.Estado;
-import utils.EstadoPedido;
-import utils.RetiroEntrega;
 import utils.Rol;
 
 import java.math.BigDecimal;
@@ -74,18 +68,7 @@ public class Prueba extends HttpServlet {
 		agregarPuntoDeRetiro(a2,punto);
 		a3=new PuntoDeRetiro("Calle 7 entre 47 y 48","Rectorado",Estado.ACTIVO);
 		agregarPuntoDeRetiro(a3,punto);
-//		listarPuntoDeRetiro(punto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar puntos de retiros(punto2)");
-//		a2.setNombre("Direccion1");
-//		editarPuntoDeRetiro(a2,punto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Eliminar punto de retiro(punto1)");
-//		//eliminarPuntoDeRetiro(a,punto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("\n");
-//		
+
 		
 		System.out.println("IMAGEN");
 		System.out.println("-----------------------------------------------------------");
@@ -124,16 +107,6 @@ public class Prueba extends HttpServlet {
 		i.agregar(m16);
 		m17=new Image("papa lavada","https://cdn.discordapp.com/attachments/751986280405139556/1125753272603512852/papa_lavada.jpg");
 		i.agregar(m17);
-		listarImagenes(i);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Editar imagen(imagen1)");
-		m1.setImagen("http://imagenMODIFICADA");
-		i.modificar(m1);
-		listarImagenes(i);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Eliminar imagen(imagen1)");
-		i.eliminar(m1);
-		listarImagenes(i);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("\n");
@@ -148,19 +121,6 @@ public class Prueba extends HttpServlet {
 		r.agregar(r1);
 		r.agregar(r2);
 		r.agregar(r3);
-		listarRondas(r);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar ronda(rango horario del 1)");
-//		r1.setRangoHorario("9am-17pm");
-//		r.modificar(r1);
-//		listarRondas(r);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Eliminar ronda(ronda3)");
-//		r.eliminar(r3);
-//		listarRondas(r);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("\n");
 		
 		
 		System.out.println("PRODUCTOR");
@@ -182,7 +142,6 @@ public class Prueba extends HttpServlet {
 		List<Producto>productos3=new ArrayList<Producto>();
 		p3=new Productor("Susana","venta de comidas",Estado.ACTIVO,new ArrayList<Producto>(),imagenes3);
 		productor.agregar(p3);
-		listarProductores(productor);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("Editar productor(productor 3 se agrego imagen)");
 		imagenes3=p3.getImagenes();
@@ -191,15 +150,6 @@ public class Prueba extends HttpServlet {
 		imagenes3.add(mnueva);
 		p3.setImagenes(imagenes3);
 		productor.modificar(p3);
-		listarProductores(productor);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Eliminar productor(productor3)");
-		productor.eliminar(p3);
-		listarProductores(productor);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Activar productor(productor3)");
-		productor.activar(p3);
-		listarProductores(productor); 
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("\n");
@@ -235,20 +185,6 @@ public class Prueba extends HttpServlet {
 		rubro.agregar(rubro6);
 		rubro.agregar(rubro7);
 		rubro.agregar(rubro8);
-		listarRubros(rubro);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Editar rubro(rubro5)");
-		rubro5.setNombre("Artesania");
-		rubro.modificar(rubro5);
-		listarRubros(rubro);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Eliminar rubro(rubro5)");
-		rubro.eliminar(rubro5);
-		listarRubros(rubro);
-		System.out.println("-----------------------------------------------------------");
-		System.out.println("Activar rubro(rubro5)");
-		rubro.activar(rubro5);
-		listarRubros(rubro);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("\n");
@@ -257,7 +193,6 @@ public class Prueba extends HttpServlet {
 		System.out.println("PRODUCTO");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("Agregar productos");
-		
 		List<RubroDeProducto> listar=new ArrayList<RubroDeProducto>();
 		listar.add(rubro2);
 		List<Image> il=new ArrayList<Image>();
@@ -359,11 +294,11 @@ public class Prueba extends HttpServlet {
 		rubro.modificar(rubro1);
 		rproductos2.add(producto1);
 		rubro2.setProductos(rproductos2);
-	    rubro.modificar(rubro2);
-	    rproductos5.add(producto3);
-	    rproductos5.add(producto5);
-	    rproductos5.add(producto4);
-	    rproductos5.add(producto12);
+                rubro.modificar(rubro2);
+                rproductos5.add(producto3);
+                rproductos5.add(producto5);
+                rproductos5.add(producto4);
+                rproductos5.add(producto12);
 		rubro5.setProductos(rproductos5);
 		rubro.modificar(rubro5);
 		rproductos3.add(producto8);
@@ -378,28 +313,13 @@ public class Prueba extends HttpServlet {
 		rproductos7.add(producto6);
 		rubro8.setProductos(rproductos7);
 		rubro.modificar(rubro8);
-		
-		listarProductos(producto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar productos(producto4)");
-//		producto4.setPrecio(new BigDecimal(1700));
-//		producto.modificar(producto4);
-//		listarProductos(producto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Eliminar productos(producto4)");
-//		producto.eliminar(producto4);
-//		listarProductos(producto);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Activar productos(producto4)");
-//		producto.activar(producto4);
-//		listarProductos(producto);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("Se agregaron los productos a los productores");
-		listarProductores(productor);
+		//listarProductores(productor);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("Se agregaron los productos a los rubros");
-		listarRubros(rubro);
+		//listarRubros(rubro);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("\n");
@@ -422,146 +342,10 @@ public class Prueba extends HttpServlet {
 		u.agregar(u2);
 		System.out.println("llego5");
 		u.agregar(u3);
-		listarUsuarios(u);
-//		System.out.println("llego6");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar usuario(usuario3)");
-//		u3.setNombre("Agustin");
-//		u.modificar(u3);
-//		listarUsuarios(u);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Suspender usuario(usuario3)");
-//		u.eliminar(u3);
-//		listarUsuarios(u);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Activar usuario(usuario3)");
-//		u.activar(u3);
-//		listarUsuarios(u);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Cambiar rol a usuario(usuario3)");
-//		u.userRol(u3);
-//		listarUsuarios(u);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Cambiar rol a administrador(usuario3)");
-//		u.adminRol(u3);
-//		listarUsuarios(u);
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("-----------------------------------------------------------");
 		System.out.println("\n");
-		
-//		System.out.println("Pedido");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Agregar pedido");
-//		List<ProductoEncargado> pEncargados=new ArrayList<ProductoEncargado>();
-//		pedido1=new Pedido(new Date(2023,05,22),r1.getFechaRetiro(),u1,RetiroEntrega.ENTREGA,EstadoPedido.NOCONFIRMADO,null,u1.getDireccion(),new BigDecimal(0),"9am-13am",pEncargados,r1);
-//		List<ProductoEncargado> pEncargados2=new ArrayList<ProductoEncargado>();
-//		pedido2=new Pedido(new Date(2023,05,22),r2.getFechaRetiro(),u2,RetiroEntrega.RETIRO,EstadoPedido.NOCONFIRMADO,a2,null,new BigDecimal(0),r2.getRangoHorario(),pEncargados2,r2);
-//		pedido.agregar(pedido1);
-//		pedido.agregar(pedido2);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar pedido(rangoHorario pedido1)");
-//		pedido1.setRangoHorario("9am-16pm");
-//		pedido.modificar(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Cancelar pedido(estado)");
-//		pedido.eliminar(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Activar pedido(estado)");
-//		pedido.activar(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Confirmar pedido(estado)");
-//		pedido.confirmar(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Marcar como retirado(estado)");
-//		pedido.marcarComoRetirado(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Marcar como entregado(estado)");
-//		pedido.marcarComoEntregado(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Marcar para ser retirado(RetiroEntrega)");
-//		pedido.marcarParaRetiro(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Marcar para ser entregado(RetiroEntrega)");
-//		pedido.marcarParaEntrega(pedido1);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//		//AGREGO LOS PEDIDOS A LOS USUARIOS
-//		System.out.println("Se agregaron los pedidos a los usuarios");
-//		pedidos1=u1.getPedidos();
-//		pedidos1.add(pedido1);
-//		u1.setPedidos(pedidos1);
-//		u.modificar(u1);
-//		
-//		pedidos2=u2.getPedidos();
-//		pedidos2.add(pedido2);
-//		u2.setPedidos(pedidos2);
-//		u.modificar(u2);
-//		listarUsuarios(u);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("\n");
-//		
-//		
-//		System.out.println("Producto Encargado");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Agregar producto encargado");
-//		pe1=new ProductoEncargado(2,producto1,pedido1,Estado.ACTIVO);
-//		pe2=new ProductoEncargado(3,producto2,pedido1,Estado.ACTIVO);
-//		pe3=new ProductoEncargado(1,producto4,pedido2,Estado.ACTIVO);
-//		pe.agregar(pe1);
-//		pe.agregar(pe2);
-//		pe.agregar(pe3);
-//		//modifico los precios del pedido
-//		pedido1.setMontoTotal(new BigDecimal(pe1.getCantidad()).multiply(producto1.getPrecio()).add(new BigDecimal(pe2.getCantidad()).multiply(producto2.getPrecio())));
-//		pedido2.setMontoTotal(new BigDecimal(pe3.getCantidad()).multiply(producto4.getPrecio()));
-//		pedido.modificar(pedido1);
-//		pedido.modificar(pedido2);
-//		//--------------------
-//		listarProductosEncargados(pe);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Editar producto encargado(producto1)");
-//		pe1.setCantidad(1);
-//		pe.modificar(pe1);
-//		//modifico los precios del pedido
-//		pedido1.setMontoTotal(new BigDecimal(pe1.getCantidad()).multiply(producto1.getPrecio()).add(new BigDecimal(pe2.getCantidad()).multiply(producto2.getPrecio())));
-//		pedido.modificar(pedido1);
-//		//--------------------
-//		listarProductosEncargados(pe);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Eliminar producto encargado(producto3)");
-//		pe.eliminar(pe3);
-//		listarProductosEncargados(pe);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("Activar producto encargado(producto3)");
-//		pe.activar(pe3);
-//		listarProductosEncargados(pe);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//        //Agrego los productos encargados a los pedidos
-//		System.out.println("Se agregaron los productos encargados a los pedidos");
-//		pEncargados=pedido1.getListaProductos();
-//		pEncargados.add(pe1);
-//		pEncargados.add(pe2);
-//		pedido1.setListaProductos(pEncargados);
-//		pedido.modificar(pedido1);
-//		
-//		pEncargados2=pedido2.getListaProductos();
-//		pEncargados2.add(pe3);
-//		pedido2.setListaProductos(pEncargados2);
-//		pedido.modificar(pedido2);
-//		listarPedidos(pedido);
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("-----------------------------------------------------------");
-//		System.out.println("\n");
+	
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

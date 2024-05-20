@@ -43,7 +43,6 @@ public class ProductoEncargadoDAO implements IProductoEncargadoDAO {
 	@Override
 	public void modificar(ProductoEncargado element) {
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(ProductoEncargado.class, element.getId());
 		try {
 			manager.getTransaction().begin();
 		    manager.merge(element);
@@ -56,7 +55,6 @@ public class ProductoEncargadoDAO implements IProductoEncargadoDAO {
 	@Override
 	public void eliminar(ProductoEncargado element) { //si se cancela el pedido
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(ProductoEncargado.class, element.getId());
 		element.setEstado(Estado.SUSPENDIDO);
 		try {
 			manager.getTransaction().begin();
@@ -69,7 +67,6 @@ public class ProductoEncargadoDAO implements IProductoEncargadoDAO {
 	
 	public void activar(ProductoEncargado element) {
 		EntityManager manager = daoUtils.getEntityManager();
-		//element=manager.find(ProductoEncargado.class, element.getId());
 		element.setEstado(Estado.ACTIVO);
 		try {
 			manager.getTransaction().begin();
