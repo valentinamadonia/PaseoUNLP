@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./Paseo2
+    container_name: my_backend
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./PaseoFrontEnd
+    container_name: my_frontend
+    ports:
+      - "80:80"
+
+networks:
+  default:
+    name: my-network
